@@ -9,7 +9,7 @@ def test_endpoint_returns_all_users(test_client):
     
     response = test_client.get("/api/users")
     print(os.getenv("TEST_DATABASE_URL"))
-    assert response.json == [{"email": "michael@mherman.org", "ids": 1}]
+    assert response.json == [{"email": "michael@mherman.org", "id": 1}]
 
 
 
