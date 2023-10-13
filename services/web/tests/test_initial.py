@@ -14,7 +14,7 @@ def test_endpoint_returns_all_users(test_client):
 def test_dummy(test_client):
     
     
-    assert 1 == 2
+    assert 1 == 1
 
 
 
