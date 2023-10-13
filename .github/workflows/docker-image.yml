@@ -26,8 +26,6 @@ jobs:
 
       - name: Run Tests
         run: |
-
-          #docker-compose -f docker-compose.yml exec -T web python manage.py create_db  # Create the database schema
           docker-compose -f docker-compose.yml exec -T web python manage.py run_tests | tee tests_output.txt # Run tests
 
           if grep -q "FAILED tests" tests_output.txt; then
