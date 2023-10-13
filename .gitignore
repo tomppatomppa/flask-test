@@ -1,0 +1,5 @@
+.env.prod*
+
+/services/web/env
+/services/web/__pycache__
+/services/web/.pytest_cache
