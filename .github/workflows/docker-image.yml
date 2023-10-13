@@ -19,7 +19,7 @@ jobs:
         run: source .env.dev
 
       - name: Build
-        run: docker-compose -f docker-compose.yml up --exit-code-from web
+        run: docker-compose -f docker-compose.yml up -d --exit-code-from web
 
       - name: Run Tests
         run: |
