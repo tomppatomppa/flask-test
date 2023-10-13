@@ -21,11 +21,5 @@ jobs:
       - name: Build
         run: docker-compose -f docker-compose.yml up -d
 
-      - name: Wait for services to start
-        run: |
-          while ! nc -z web 5000; do
-            sleep 1
-          done
-
       - name: Run Tests
-        run: docker-compose -f docker-compose.yml exec web pytest
+        run: docker-compose exec web python manage.py run_tests
