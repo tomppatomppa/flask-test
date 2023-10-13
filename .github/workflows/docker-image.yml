@@ -21,4 +21,4 @@ jobs:
       run: docker-compose -f docker-compose.yml up --build -d
       
     - name: run tests
-      run: docker-compose exec web python manage.py run_tests
+      run: docker-compose -T -f docker-compose.yml exec web python manage.py run_tests
