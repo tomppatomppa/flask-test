@@ -13,5 +13,6 @@ fi
 
 python manage.py create_db
 python manage.py seed_db
+python manage.py run_tests
 
 exec "$@"
