@@ -11,6 +11,11 @@ def test_endpoint_returns_all_users(test_client):
     print(os.getenv("TEST_DATABASE_URL"))
     assert response.json == [{"email": "michael@mherman.org", "id": 1}]
 
+def test_dummy(test_client):
+    
+    
+    assert 1 == 2
+
 
 
 
