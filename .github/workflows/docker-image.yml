@@ -25,4 +25,4 @@ jobs:
         run: |
 
           docker-compose -f docker-compose.yml exec -T web python manage.py create_db  # Create the database schema
-          docker-compose -f docker-compose.yml exec -T web python manage.py run_tests  # Run tests
+          docker-compose -f docker-compose.yml exec -T web python manage.py run_tests  || exit 1 # Run tests
