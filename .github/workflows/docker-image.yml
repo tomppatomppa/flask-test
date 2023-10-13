@@ -19,10 +19,23 @@ jobs:
         run: source .env.dev
 
       - name: Build
-        run: docker-compose -f docker-compose.yml up -d --exit-code-from web
+        run: docker-compose -f docker-compose.yml up -d
 
       - name: Run Tests
         run: |
 
           docker-compose -f docker-compose.yml exec -T web python manage.py create_db  # Create the database schema
           docker-compose -f docker-compose.yml exec -T web python manage.py run_tests # Run tests
+
+      - name: View logs for a specific step
+        run: |
+          workflow_logs=${{ github.workflow }}
+          job_logs=${{ github.job }}
+          step_name="Run Tests"  # Assuming your test step is named "Run Tests"
+          # Use grep to search for the "FAILED" pattern in the logs
+          if grep -q -E "FAILED" "${workflow_logs}/${job_logs}/${step_name}"; then
+            echo "Pattern 'FAILED' found in logs. Exiting with code 1."
+            exit 1
+          else
+            echo "Pattern 'FAILED' not found in logs."
+          fi
