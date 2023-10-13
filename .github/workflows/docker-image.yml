@@ -17,8 +17,7 @@ jobs:
     - name: file permission
       run: chmod +x services/web/entrypoint.sh
       
-    - name: Build the Docker image
-      run: docker-compose -f docker-compose.yml up --build -d
-      
-    - name: run tests
-      run: docker-compose -T -f docker-compose.yml exec web python manage.py run_tests
+    - name: Build and run tests
+      run: |
+        docker-compose -f docker-compose.yml up -d
+        docker-compose -f docker-compose.yml exec -T  web python manage.py run_tests
