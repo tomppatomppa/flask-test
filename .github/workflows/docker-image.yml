@@ -20,7 +20,9 @@ jobs:
     - name: Load environment variables
       run: source .env.dev  
       
-    - name: Build and run tests
-      run: |
-        docker-compose -f docker-compose.yml up -d
+    - name: Build
+      run: docker-compose -f docker-compose.yml up -d
+        
+    - name: Run Tests
+      run : docker-compose exec web python manage.py run_tests
         
