@@ -20,5 +20,6 @@ ENV FLASK_APP=app.py
 # copy project
 COPY . /usr/src/app/
 
+EXPOSE 5001
 # run entrypoint.sh
 ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
