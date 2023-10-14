@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: docker-compose -f docker-compose.yml up -d
 
-      - name: Delay for 3 seconds
+      - name: Delay for 3 seconds before running tests
         run: sleep 3
 
       - name: Run Tests
