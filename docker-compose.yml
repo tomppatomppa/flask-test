@@ -13,6 +13,20 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build: ./services/frontend
+    container_name: vite-frontend
+    volumes:
+      - ./services/frontend/src:/usr/src/app/src
+      - ./services/frontend/tests:/usr/src/app/tests
+      - ./services/frontend/index.html:/usr/src/app/index.html
+    ports:
+      - 5000:5000
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - web
+
   db:
     image: postgres:13
     volumes:
@@ -29,6 +43,14 @@ services:
       - ADMINER_DESIGN=db
     ports:
       - 8083:8080
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
 
 volumes:
   postgres_data:

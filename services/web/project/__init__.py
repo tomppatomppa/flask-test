@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 db = SQLAlchemy()
@@ -40,4 +40,17 @@ def create_app():
         
         return jsonify(list_users)
     
+    @app.route("/api/users", methods=["POST"])
+    def add_user():
+        user = request.get_json()
+        try:
+            new_user = User(email=user.get('email'))
+            db.session.add(new_user)
+            db.session.commit()
+            return jsonify(new_user.to_dict()), 201
+        except Exception as e:
+            db.session.rollback()  
+            return jsonify({'error': str(e)}), 400 
+
+        
     return app

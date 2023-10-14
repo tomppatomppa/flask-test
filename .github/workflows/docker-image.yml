@@ -24,7 +24,7 @@ jobs:
       - name: Delay for 3 seconds before running tests
         run: sleep 3
 
-      - name: Run Tests
+      - name: Run backend Tests
         run: |
           docker-compose -f docker-compose.yml exec -T web python manage.py run_tests | tee tests_output.txt # Run tests
 
@@ -33,4 +33,15 @@ jobs:
             exit 1
           else
             echo "Pattern 'FAILED tests' not found in test results."
+          fi
+
+      - name: Run frontend tests
+        run: |
+          docker exec vite-frontend npm run test | tee frontend_tests_output.txt # Run tests
+
+          if grep -q "failed" frontend_tests_output.txt; then
+            echo "Pattern 'failed' found in frontend test results. Exiting with code 1."
+            exit 1
+          else
+            echo "Pattern 'failed' not found in frontend test results."
           fi
