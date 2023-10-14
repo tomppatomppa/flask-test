@@ -40,8 +40,8 @@ jobs:
           docker exec vite-frontend npm run test | tee frontend_tests_output.txt # Run tests
 
           if grep -q "failed" frontend_tests_output.txt; then
-            echo "Pattern 'FAIL' found in frontend test results. Exiting with code 1."
+            echo "Pattern 'failed' found in frontend test results. Exiting with code 1."
             exit 1
           else
-            echo "Pattern 'FAIL' not found in frontend test results."
+            echo "Pattern 'failed' not found in frontend test results."
           fi
