@@ -9,7 +9,6 @@ type User = {
 }
 function App() {
   const [allUsers, setAllUsers] = useState<User[]>([])
-  const [count, setCount] = useState(0)
 
   useEffect(() => {
     const ping = async () => {
@@ -34,15 +33,17 @@ function App() {
     if (!response.ok) {
       throw new Error(`Request failed with status: ${JSON.stringify(result)}`)
     }
-    setAllUsers([...allUsers, result])
+    setAllUsers(() => [...allUsers, result])
   }
 
   return (
     <>
       <div>
-        {allUsers.map((user) => (
-          <div key={user.id}>{user.email}</div>
-        ))}
+        <ul id="user-list">
+          {allUsers.map((user) => (
+            <div key={user.id}>{user.email}</div>
+          ))}
+        </ul>
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -50,7 +51,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Vite + Reacts + TS</h1>
       <div className="card">
         <button onClick={() => addNew()}>Add user</button>
         <p>

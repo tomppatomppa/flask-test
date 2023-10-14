@@ -1,0 +1,22 @@
+{
+  "name": "flask-on-docker",
+  "version": "1.0.0",
+  "description": "In /web/ $ docker-compose exec web <command>",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomppatomppa/flask-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomppatomppa/flask-test/issues"
+  },
+  "homepage": "https://github.com/tomppatomppa/flask-test#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0",
+    "@types/node": "^20.8.6"
+  }
+}
