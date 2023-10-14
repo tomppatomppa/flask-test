@@ -15,8 +15,10 @@ services:
 
   frontend:
     build: ./services/frontend
+    container_name: vite-frontend
     volumes:
       - ./services/frontend/src:/usr/src/app/src
+      - ./services/frontend/tests:/usr/src/app/tests
       - ./services/frontend/index.html:/usr/src/app/index.html
     ports:
       - 5000:5000
