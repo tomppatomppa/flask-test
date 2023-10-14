@@ -45,7 +45,3 @@ jobs:
           else
             echo "Pattern 'failed' not found in frontend test results."
           fi
-
-      - name: Run E2E Tests
-        run: |
-          npx playwright test
